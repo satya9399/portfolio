@@ -1,7 +1,6 @@
 // app/page.jsx
 
 'use client';
-import Logo from "../../public/react-2.svg";
 import { useState } from 'react';
 
 export default function Home() {
@@ -68,8 +67,8 @@ export default function Home() {
             <div className="w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center p-2 shadow-xl animate-float">
               <div className="w-full h-full bg-slate-200 rounded-full flex items-center justify-center overflow-hidden">
                 <div className="text-center p-4">
-                  <span className="text-blue-600 font-bold">Animated Developer GIF</span>
-                  <p className="text-sm mt-2 text-slate-600">(Placeholder for your cartoon GIF)</p>
+                  <span className="text-blue-600 font-bold"><img src="../../public/thzM4IyIu3.gif" className="w-auto h-auto" alt="Animated Developer GIF"></img></span>
+                  <p className="text-sm mt-2 text-slate-600"><img/></p>
                 </div>
               </div>
             </div>
