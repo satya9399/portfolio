@@ -154,10 +154,12 @@ I’m always exploring new technologies, cloud platforms, and AI tools while pre
               <div className="h-48 bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center">
                 <span className="text-white font-bold text-xl">Online Exam Management System</span>
               </div>
-              <div className="p-6">
+              <a href="https://github.com/satya9399/onlineExamCondoctor">
+              <div className="p-6" >
                 <h3 className="text-xl font-semibold mb-2">Online Exam</h3>
                 <p className="text-slate-600">A modern Exam platform built with Next.js and Stripe integration.</p>
               </div>
+              </a>
             </div>
             
             {/* Project 2 */}
@@ -165,10 +167,12 @@ I’m always exploring new technologies, cloud platforms, and AI tools while pre
               <div className="h-48 bg-gradient-to-r from-green-400 to-green-600 flex items-center justify-center">
                 <span className="text-white font-bold text-xl">PDF Doctor</span>
               </div>
+              <a href="https://github.com/satya9399/PdfDoctor">
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">Productivity Tool</h3>
                 <p className="text-slate-600">A PDF doctor application help to convert pdfs to other all types.</p>
               </div>
+              </a>
             </div>
             
             {/* Project 3 */}
