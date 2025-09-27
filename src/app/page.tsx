@@ -177,11 +177,12 @@ I’m always exploring new technologies, cloud platforms, and AI tools while pre
             {/* Project 3 */}
             <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
               <div className="h-48 bg-gradient-to-r from-purple-400 to-purple-600 flex items-center justify-center">
-                <span className="text-white font-bold text-xl">Weather Dashboard</span>
+                <span className="text-white font-bold text-xl">ATM System</span>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Weather App</h3>
-                <p className="text-slate-600">Real-time weather information with interactive charts and maps.</p>
+                <h3 className="text-xl font-semibold mb-2">ATM System</h3>
+                <p className="text-slate-600">A simple banking software allowing users to manage accounts, deposit and withdraw funds, and check 
+balances.</p>
               </div>
             </div>
           </div>
