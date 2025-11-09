@@ -1,10 +1,47 @@
-// app/page.jsx
-
 'use client';
-import { useState } from 'react';
+import { useState, useRef, FormEvent, useEffect } from 'react';
+import emailjs from '@emailjs/browser';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [sendStatus, setSendStatus] = useState('');
+  const [imageError, setImageError] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const sendEmail = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    if (!formRef.current) {
+      return;
+    }
+
+    setIsSending(true);
+    setSendStatus('');
+
+    // Your EmailJS credentials
+    const serviceID = 'service_2dsl3i4';
+    const templateID = 'template_dvtz08k';
+    const publicKey = 'qzQNhyLbvssOJ0XGp';
+
+    emailjs.sendForm(serviceID, templateID, formRef.current, publicKey)
+      .then((result) => {
+        setSendStatus('success');
+        setIsSending(false);
+        formRef.current?.reset();
+        setTimeout(() => setSendStatus(''), 5000);
+      })
+      .catch((error) => {
+        setSendStatus('error');
+        setIsSending(false);
+        setTimeout(() => setSendStatus(''), 5000);
+      });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 text-slate-800">
@@ -66,10 +103,19 @@ export default function Home() {
           <div className="md:w-1/2 flex justify-center mt-10 md:mt-0">
             <div className="w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center p-2 shadow-xl animate-float">
               <div className="w-full h-full bg-slate-200 rounded-full flex items-center justify-center overflow-hidden">
-                <div className="text-center p-4 bg-slate-200">
-                  <span className="text-blue-600 font-bold bg-slate-200"><img src="/Satyam1.JPG" className="w-auto h-auto" alt="Animated Developer GIF"></img></span>
-                  <p className="text-sm mt-2 text-slate-600"><img/></p>
-                </div>
+                {!imageError ? (
+                  <img 
+                    src="/Satyam1.JPG" 
+                    className="w-full h-full object-cover rounded-full" 
+                    alt="Satyam Singh Shrivas - Frontend Developer"
+                    onError={() => setImageError(true)}
+                  />
+                ) : (
+                  <div className="text-center p-4">
+                    <span className="text-4xl font-bold text-blue-600">SS</span>
+                    <p className="text-sm text-slate-600 mt-2">Profile Image</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -82,12 +128,12 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-center mb-12">About Me</h2>
           <div className="max-w-6xl mx-auto bg-slate-50 p-8 rounded-xl shadow-md">
             <p className="text-lg text-slate-700 mb-4">
-              Hi, I’m Satyam Singh Shrivas, a Computer Science Engineer and passionate Software Developer. I love turning ideas into reality through clean, modern, and efficient code.
+              Hi, I'm Satyam Singh Shrivas, a Computer Science Engineer and passionate Software Developer. I love turning ideas into reality through clean, modern, and efficient code.
 
- I specialize in Web Development using React, Tailwind CSS, Node.js, and MongoDB, and I’ve built projects like an Online Examination System, a Job Portal website, and a Ludo King–style Android app.
- I’ve also gained hands-on experience in Cybersecurity, working with Linux, Kali tools, and VirtualBox during my internship.
- Along with my technical journey, I worked at upDt Education Technology Pvt. Ltd. as part of the Business Development team, learning how technology connects with real-world impact.
-I’m always exploring new technologies, cloud platforms, and AI tools while preparing myself to contribute as a skilled software developer.
+              I specialize in Web Development using React, Tailwind CSS, Node.js, and MongoDB, and I've built projects like an Online Examination System, a Job Portal website, and a Ludo King-style Android app.
+              I've also gained hands-on experience in Cybersecurity, working with Linux, Kali tools, and VirtualBox during my internship.
+              Along with my technical journey, I worked at upDt Education Technology Pvt. Ltd. as part of the Business Development team, learning how technology connects with real-world impact.
+              I'm always exploring new technologies, cloud platforms, and AI tools while preparing myself to contribute as a skilled software developer.
             </p>
             <p className="text-lg text-slate-700">
               When I'm not coding, you can find me exploring new technologies, contributing to open source projects, or enjoying a good book on UI design principles. I believe in continuous learning and pushing the boundaries of what's possible on the web.
@@ -95,7 +141,6 @@ I’m always exploring new technologies, cloud platforms, and AI tools while pre
             
             <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-white p-4 rounded-lg shadow text-center">
-                
                 <h3 className="font-semibold text-blue-600">React</h3>
               </div>
               <div className="bg-white p-4 rounded-lg shadow text-center">
@@ -107,7 +152,6 @@ I’m always exploring new technologies, cloud platforms, and AI tools while pre
               <div className="bg-white p-4 rounded-lg shadow text-center">
                 <h3 className="font-semibold text-blue-600">JavaScript</h3>
               </div>
-              
             </div>
             <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-white p-4 rounded-lg shadow text-center">
@@ -117,27 +161,25 @@ I’m always exploring new technologies, cloud platforms, and AI tools while pre
                 <h3 className="font-semibold text-blue-600">C&C++</h3>
               </div>
               <div className="bg-white p-4 rounded-lg shadow text-center">
-                <h3 className="font-semibold text-blue-600">node</h3>
+                <h3 className="font-semibold text-blue-600">Node.js</h3>
               </div>
               <div className="bg-white p-4 rounded-lg shadow text-center">
                 <h3 className="font-semibold text-blue-600">Java</h3>
               </div>
-              
             </div>
             <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-white p-4 rounded-lg shadow text-center">
-                <h3 className="font-semibold text-blue-600">Html&css</h3>
+                <h3 className="font-semibold text-blue-600">HTML & CSS</h3>
               </div>
               <div className="bg-white p-4 rounded-lg shadow text-center">
-                <h3 className="font-semibold text-blue-600">MySql</h3>
+                <h3 className="font-semibold text-blue-600">MySQL</h3>
               </div>
               <div className="bg-white p-4 rounded-lg shadow text-center">
                 <h3 className="font-semibold text-blue-600">MongoDB</h3>
               </div>
               <div className="bg-white p-4 rounded-lg shadow text-center">
-                <h3 className="font-semibold text-blue-600">.net</h3>
+                <h3 className="font-semibold text-blue-600">.NET</h3>
               </div>
-              
             </div>
           </div>
         </div>
@@ -154,10 +196,10 @@ I’m always exploring new technologies, cloud platforms, and AI tools while pre
                 <span className="text-white font-bold text-xl">Online Exam Management System</span>
               </div>
               <a href="https://github.com/satya9399/onlineExamCondoctor">
-              <div className="p-6" >
-                <h3 className="text-xl font-semibold mb-2">Online Exam</h3>
-                <p className="text-slate-600">A modern Exam platform built with Next.js and Stripe integration.</p>
-              </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">Online Exam</h3>
+                  <p className="text-slate-600">A modern Exam platform built with Next.js and Stripe integration.</p>
+                </div>
               </a>
             </div>
             
@@ -167,10 +209,10 @@ I’m always exploring new technologies, cloud platforms, and AI tools while pre
                 <span className="text-white font-bold text-xl">PDF Doctor</span>
               </div>
               <a href="https://github.com/satya9399/PdfDoctor">
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Productivity Tool</h3>
-                <p className="text-slate-600">A PDF doctor application help to convert pdfs to other all types.</p>
-              </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">Productivity Tool</h3>
+                  <p className="text-slate-600">A PDF doctor application help to convert pdfs to other all types.</p>
+                </div>
               </a>
             </div>
             
@@ -181,8 +223,7 @@ I’m always exploring new technologies, cloud platforms, and AI tools while pre
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">ATM System</h3>
-                <p className="text-slate-600">A simple banking software allowing users to manage accounts, deposit and withdraw funds, and check 
-balances.</p>
+                <p className="text-slate-600">A simple banking software allowing users to manage accounts, deposit and withdraw funds, and check balances.</p>
               </div>
             </div>
           </div>
@@ -194,14 +235,28 @@ balances.</p>
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Get In Touch</h2>
           <div className="max-w-2xl mx-auto bg-slate-50 p-8 rounded-xl shadow-md">
-            <form className="space-y-6">
+            {/* Status Messages */}
+            {sendStatus === 'success' && (
+              <div className="mb-6 p-4 bg-green-100 text-green-700 rounded-lg border border-green-200">
+                Message sent successfully! I'll get back to you soon.
+              </div>
+            )}
+            {sendStatus === 'error' && (
+              <div className="mb-6 p-4 bg-red-100 text-red-700 rounded-lg border border-red-200">
+                Failed to send message. Please try again or contact me directly via email.
+              </div>
+            )}
+
+            <form ref={formRef} onSubmit={sendEmail} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-slate-700 font-medium mb-2">Name</label>
                 <input 
                   type="text" 
                   id="name" 
+                  name="from_name"
                   className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Your name"
+                  required
                 />
               </div>
               <div>
@@ -209,24 +264,33 @@ balances.</p>
                 <input 
                   type="email" 
                   id="email" 
+                  name="from_email"
                   className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Your email"
+                  required
                 />
               </div>
               <div>
                 <label htmlFor="message" className="block text-slate-700 font-medium mb-2">Message</label>
                 <textarea 
                   id="message" 
-                 
+                  name="message"
+                  rows={5}
                   className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Your message"
+                  required
                 ></textarea>
               </div>
               <button 
                 type="submit" 
-                className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+                disabled={isSending}
+                className={`w-full py-3 rounded-lg font-medium transition-colors ${
+                  isSending 
+                    ? 'bg-blue-400 cursor-not-allowed' 
+                    : 'bg-blue-600 hover:bg-blue-700'
+                } text-white`}
               >
-                Send Message
+                {isSending ? 'Sending...' : 'Send Message'}
               </button>
             </form>
             
@@ -245,7 +309,7 @@ balances.</p>
                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                   </svg>
                 </a>
-                <a href="https://www.linkedin.com/in/satyam922?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" className="text-slate-600 hover:text-blue-600 transition-colors">
+                <a href="https://www.linkedin.com/in/satyam922" className="text-slate-600 hover:text-blue-600 transition-colors">
                   <span className="sr-only">LinkedIn</span>
                   <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.790-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
@@ -263,9 +327,9 @@ balances.</p>
           <p>© 2023 Satyam Singh Shrivas. All rights reserved.</p>
           <div className="flex justify-center space-x-6 mt-4">
             <a href="https://github.com/satya9399" className="hover:text-blue-400 transition-colors">GitHub</a>
-            <a href="https://www.linkedin.com/in/satyam922?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" className="hover:text-blue-400 transition-colors">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/satyam922" className="hover:text-blue-400 transition-colors">LinkedIn</a>
             <a href="#" className="hover:text-blue-400 transition-colors">Twitter</a>
-            <a href="https://www.instagram.com/____satyam0?igsh=cnFvcHBraDBmY3Jz" className="hover:text-blue-400 transition-colors">Instagram</a>
+            <a href="https://www.instagram.com/____satyam0" className="hover:text-blue-400 transition-colors">Instagram</a>
           </div>
         </div>
       </footer>
