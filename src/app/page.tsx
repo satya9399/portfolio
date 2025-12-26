@@ -208,7 +208,7 @@ export default function Home() {
               <div className="h-48 bg-gradient-to-r from-green-400 to-green-600 flex items-center justify-center">
                 <span className="text-white font-bold text-xl">PDF Doctor</span>
               </div>
-              <a href="https://github.com/satya9399/PdfDoctor">
+              <a href="https://pdf-doctor-gzetqbqjl-satyam-s-projects-2d165f3a.vercel.app/">
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-2">Productivity Tool</h3>
                   <p className="text-slate-600">A PDF doctor application help to convert pdfs to other all types.</p>
