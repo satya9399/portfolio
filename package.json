@@ -8,10 +8,10 @@
     "start": "next start"
   },
   "dependencies": {
-    "@emailjs/browser": "^4.4.1",
-    "next": "15.5.9",
+    "next": "^16.1.6",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "resend": "^6.9.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
