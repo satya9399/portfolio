@@ -101,24 +101,26 @@ export default function Home() {
           </div>
           
           <div className="md:w-1/2 flex justify-center mt-10 md:mt-0">
-            <div className="w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center p-2 shadow-xl animate-float">
-              <div className="w-full h-full bg-slate-200 rounded-full flex items-center justify-center overflow-hidden">
-                {!imageError ? (
-                  <img 
-                    src="/Satyam1.JPG" 
-                    className="w-full h-full object-cover rounded-full" 
-                    alt="Satyam Singh Shrivas - Frontend Developer"
-                    onError={() => setImageError(true)}
-                  />
-                ) : (
-                  <div className="text-center p-4">
-                    <span className="text-4xl font-bold text-blue-600">SS</span>
-                    <p className="text-sm text-slate-600 mt-2">Profile Image</p>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
+  <div className="relative w-64 h-64 md:w-80 md:h-80 flex items-center justify-center">
+    
+    {/* Background Circle */}
+    <div className="absolute w-full h-full bg-gradient-to-br from-blue-500 to-purple-500 rounded-full blur-xl opacity-80 animate-pulse"></div>
+
+    {/* Profile Image */}
+    {!imageError ? (
+      <img
+        src="/336635642_bc9fd4bd-de9b-4555-976c-8360576c6708.svg"
+        className="relative w-60 h-60 md:w-72 md:h-72 object-hover rounded-full shadow-xl border-0 border-white"
+        alt="Satyam Singh Shrivas - Frontend Developer"
+        onError={() => setImageError(true)}
+      />
+    ) : (
+      <div className="relative w-60 h-60 md:w-72 md:h-72 bg-slate-200 rounded-full flex items-center justify-center">
+        <span className="text-4xl font-bold text-blue-600">SS</span>
+      </div>
+    )}
+  </div>
+</div>
         </div>
       </section>
 
