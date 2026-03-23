@@ -1,6 +1,6 @@
 'use client';
 import { useState, useRef, FormEvent, useEffect } from 'react';
-import emailjs from '@emailjs/browser';
+
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,18 +29,7 @@ export default function Home() {
     const templateID = 'template_dvtz08k';
     const publicKey = 'qzQNhyLbvssOJ0XGp';
 
-    emailjs.sendForm(serviceID, templateID, formRef.current, publicKey)
-      .then((result) => {
-        setSendStatus('success');
-        setIsSending(false);
-        formRef.current?.reset();
-        setTimeout(() => setSendStatus(''), 5000);
-      })
-      .catch((error) => {
-        setSendStatus('error');
-        setIsSending(false);
-        setTimeout(() => setSendStatus(''), 5000);
-      });
+    
   };
 
   return (
@@ -332,6 +321,7 @@ export default function Home() {
             <a href="https://www.linkedin.com/in/satyam922" className="hover:text-blue-400 transition-colors">LinkedIn</a>
             <a href="#" className="hover:text-blue-400 transition-colors">Twitter</a>
             <a href="https://www.instagram.com/____satyam0" className="hover:text-blue-400 transition-colors">Instagram</a>
+             <a href="https://drive.google.com/file/d/1tlALY0EDkUYM8mx7iMy3ZFjeE1Id02YK/view?usp=drivesdk" className="hover:text-blue-400 transition-colors">View Resume</a>
           </div>
         </div>
       </footer>
