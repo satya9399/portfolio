@@ -1,6 +1,7 @@
 'use client';
 import { useState, useRef, FormEvent, useEffect } from 'react';
 
+
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSending, setIsSending] = useState(false);
@@ -64,37 +65,12 @@ export default function Home() {
     setIsSending(true);
     setSendStatus('');
 
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      });
+    // Your EmailJS credentials
+    const serviceID = 'service_2dsl3i4';
+    const templateID = 'template_dvtz08k';
+    const publicKey = 'qzQNhyLbvssOJ0XGp';
 
-      const responseData = await res.json();
-
-      if (res.ok) {
-        setSendStatus("success");
-        formRef.current.reset();
-      } else {
-        console.error('Server error:', responseData);
-        setSendStatus("error");
-      }
-    } catch (error) {
-      console.error('Network error:', error);
-      setSendStatus("error");
-    } finally {
-      setIsSending(false);
-      
-      // Clear success message after 5 seconds
-      if (sendStatus === 'success') {
-        setTimeout(() => {
-          setSendStatus('');
-        }, 5000);
-      }
-    }
+    
   };
 
   return (
@@ -451,6 +427,11 @@ export default function Home() {
         <div className="container mx-auto text-center">
           <p className="text-slate-300">© {new Date().getFullYear()} Satyam Singh Shrivas. All rights reserved.</p>
           <div className="flex justify-center space-x-6 mt-4">
+            <a href="https://github.com/satya9399" className="hover:text-blue-400 transition-colors">GitHub</a>
+            <a href="https://www.linkedin.com/in/satyam922" className="hover:text-blue-400 transition-colors">LinkedIn</a>
+            <a href="#" className="hover:text-blue-400 transition-colors">Twitter</a>
+            <a href="https://www.instagram.com/____satyam0" className="hover:text-blue-400 transition-colors">Instagram</a>
+             <a href="https://drive.google.com/file/d/1tlALY0EDkUYM8mx7iMy3ZFjeE1Id02YK/view?usp=drivesdk" className="hover:text-blue-400 transition-colors">View Resume</a>
             <a href="https://github.com/satya9399" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-white transition-colors">GitHub</a>
             <a href="https://www.linkedin.com/in/satyam922" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-white transition-colors">LinkedIn</a>
             <a href="https://www.instagram.com/____satyam0" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-white transition-colors">Instagram</a>
