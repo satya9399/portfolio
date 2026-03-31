@@ -2,7 +2,7 @@
 # Personal Portfolio Website
 
 A modern, responsive portfolio website built with Next.js and Tailwind CSS to showcase projects, skills, and professional journey.
-
+![Portfolio Screenshot](public/image.png)
 ## Tech Stack
 
 - **Framework**: Next.js 14 (App Router)
